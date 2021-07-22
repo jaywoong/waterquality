@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+{% load static %}
+
+<script>
+    function display(data){
+    // -----------------------------------------
+    Highcharts.chart('container1', {
+    chart: {
+        type: 'line'
+    },
+    title: {
+        text: 'Monthly Average Temperature'
+    },
+    subtitle: {
+        text: 'Source: WorldClimate.com'
+    },
+    xAxis: {
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    },
+    yAxis: {
+        title: {
+            text: 'Temperature (°C)'
+        }
+    },
+    plotOptions: {
+        line: {
+            dataLabels: {
+                enabled: true
+            },
+            enableMouseTracking: false
+        }
+    },
+    series: data
+    });
+    // -----------------------------------------
+    };
+
+    function getdata(){
+        $.ajax({
+            url:'chart1',
+            datatype:'JSON',
+            success:function(data){
+                display(data);
+            }
+        });
+    };
+
+    $(document).ready(function(){
+        getdata();
+    });
+</script>
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Dashboard 1</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+
+        <div class="row">
+            <div class="col-xl-6">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-chart-area me-1"></i>
+                        Area Chart Example
+                    </div>
+                    <div class="card-body">
+                        <div id="container1" width="100%" height="40"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-chart-bar me-1"></i>
+                        Bar Chart Example
+                    </div>
+                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</main>

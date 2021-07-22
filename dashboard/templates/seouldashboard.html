@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+{% load static %}
+<script>
+
+    function display(d){
+//---------------------------------------------------------------------
+Highcharts.chart('seoulcontainer', {
+    chart: {
+        type: 'column',
+        options3d: {
+            enabled: true,
+            alpha: 10,
+            beta: 25,
+            depth: 70
+        }
+    },
+    title: {
+        text: '3D chart with null values'
+    },
+    subtitle: {
+        text: 'Notice the difference between a 0 value and a null point'
+    },
+    plotOptions: {
+        column: {
+            depth: 25
+        }
+    },
+    xAxis: {
+        categories: d.locs,
+        labels: {
+            skew3d: true,
+            style: {
+                fontSize: '16px'
+            }
+        }
+    },
+    yAxis: {
+        title: {
+            text: null
+        }
+    },
+    series: [{
+        name: 'Seoul',
+        data: d.datas
+    }]
+});
+//---------------------------------------------------------------------
+    };
+
+    function getdata(){
+        $.ajax({
+            url:'seouldashboards',
+            datatype:'JSON',
+            success:function(data){
+                display(data);
+            }
+        });
+    };
+
+    $(document).ready(function(){
+        getdata();
+    });
+</script>
+<main>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-chart-area me-1"></i>
+                Area Chart Example
+            </div>
+            <div class="card-body">
+                <div id="seoulcontainer" width="100%" height="30"></div>
+            </div>
+            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+        </div>
+</main>
