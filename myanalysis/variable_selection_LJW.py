@@ -10,7 +10,7 @@ from config.settings import DATA_DIRS
 
 # ------------------------------------------------------------------------------------------------------
 
-class WnH:
+class VS:
     def healthPreprocessing(self):
         # 2009 ~ 2018년 건강 데이터
         dfh_all = pd.read_excel(DATA_DIRS[0] + '//health_2009_2018_preprocessed.xlsx', sheet_name = None, engine = 'openpyxl');
@@ -104,25 +104,14 @@ class WnH:
         result = result.set_index('지역').drop(['세종특별자치시2009','세종특별자치시2010','세종특별자치시2011','세종특별자치시2012','세종특별자치시2013','세종특별자치시2014','세종특별자치시2015','세종특별자치시2016','세종특별자치시2017','세종특별자치시2018'], axis=0)
         return result
 
-    def mlr(self, x, y):
+    def standardization(self, x):
         # Standardization
         scaler = StandardScaler()
         x_scaled = scaler.fit_transform(x)
 
-        # train, test data 나누기
-        x_train, x_test, y_train, y_test = train_test_split(x_scaled, y, test_size=0.3)
+        return x_scaled
 
-        # Linear Regression
-        lr = LinearRegression()
-        lr.fit(x_train, y_train)
-
-        # Test
-        pd.DataFrame(lr.predict(x_test))
-        score = lr.score(x_test, y_test)
-
-        return x_scaled, y, score
-
-    def varSelection(self, x_scaled, y):         #변수선택법(단계별 선택법)
+    def stepwiseSelection(self, x_scaled, y):         #변수선택법(단계별 선택법)
 
         colName = water.columns[3:]
         df = pd.DataFrame(x_scaled, columns=colName)
@@ -184,12 +173,11 @@ class WnH:
 
 
 if __name__ == '__main__':
-    WnH = WnH()
+    VS = VS()
 
-    water = WnH.waterPreprocessing()
-    x = WnH.waterQualMean()
-    y = WnH.healthPreprocessing()
+    water = VS.waterPreprocessing()
+    x = VS.waterQualMean()
+    y = VS.healthPreprocessing()
 
-    x_scaled, y, score = WnH.mlr(x,y)
-    print(score)
-    WnH.varSelection(x_scaled,y)
+    x_scaled = VS.standardization(x)
+    VS.stepwiseSelection(x_scaled,y)
