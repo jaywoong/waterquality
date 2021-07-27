@@ -24,15 +24,16 @@ urlpatterns = [
     path('dashboard1', views.dashboard1, name='dashboard1'),
     path('dashboard2', views.dashboard2, name='dashboard2'),
     path('dashboard3', views.dashboard3, name='dashboard3'),
-    path('tabledata', views.tabledata, name='tabledata'),
-    path('chart1', views.chart1, name='chart1'),
+    path('health01', views.health01, name='health01'),
+    path('health02', views.health02, name='health02'),
+    path('health03', views.health03, name='health03'),
+    path('health04', views.health04, name='health04'),
+    path('health05', views.health05, name='health05'),
+    path('health06', views.health06, name='health06'),
+    path('health07', views.health07, name='health07'),
+    path('health08', views.health08, name='health08'),
+    path('health09', views.health09, name='health09'),
+    path('health10', views.health10, name='health10'),
+    path('health11', views.health11, name='health11'),
 
-    path('babydashboard', views.babydashboard, name='babydashboard'),
-    path('babydashboards', views.babydashboards, name='babydashboards'),
-
-    path('localdashboard', views.localdashboard, name='localdashboard'),
-    path('localdashboards', views.localdashboards, name='localdashboards'),
-
-    path('seouldashboard', views.seouldashboard, name='seouldashboard'),
-    path('seouldashboards', views.seouldashboards, name='seouldashboards'),
 ]

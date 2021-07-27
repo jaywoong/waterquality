@@ -1,83 +1,20 @@
 <!DOCTYPE html>
-{% load static %}
-
-<script>
-    function display(data){
-    // -----------------------------------------
-    Highcharts.chart('container1', {
-    chart: {
-        type: 'line'
-    },
-    title: {
-        text: 'Monthly Average Temperature'
-    },
-    subtitle: {
-        text: 'Source: WorldClimate.com'
-    },
-    xAxis: {
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-    },
-    yAxis: {
-        title: {
-            text: 'Temperature (°C)'
-        }
-    },
-    plotOptions: {
-        line: {
-            dataLabels: {
-                enabled: true
-            },
-            enableMouseTracking: false
-        }
-    },
-    series: data
-    });
-    // -----------------------------------------
-    };
-
-    function getdata(){
-        $.ajax({
-            url:'chart1',
-            datatype:'JSON',
-            success:function(data){
-                display(data);
-            }
-        });
-    };
-
-    $(document).ready(function(){
-        getdata();
-    });
-</script>
-<main>
-    <div class="container-fluid px-4">
-        <h1 class="mt-4">Dashboard 1</h1>
-        <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active">Dashboard</li>
-        </ol>
-
-        <div class="row">
-            <div class="col-xl-6">
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <i class="fas fa-chart-area me-1"></i>
-                        Area Chart Example
-                    </div>
-                    <div class="card-body">
-                        <div id="container1" width="100%" height="40"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-6">
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <i class="fas fa-chart-bar me-1"></i>
-                        Bar Chart Example
-                    </div>
-                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-</main>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <a href = "{% url 'health01' %}" class="btn btn-outline-secondary" role="button">비만율(신체계측)_표준화율</a>
+    <a href = "{% url 'health02' %}" class="btn btn-outline-secondary" role="button">삶의 질 지수(EQ-5D)_표준화율</a>
+    <a href = "{% url 'health03' %}" class="btn btn-outline-secondary" role="button">양호한 주관적 건강수준 인지율_표준화율</a>
+    <a href = "{% url 'health04' %}" class="btn btn-outline-secondary" role="button">행복감 지수_표준화율</a>
+    <a href = "{% url 'health05' %}" class="btn btn-outline-secondary" role="button">스트레스 인지율_표준화율</a>
+    <a href = "{% url 'health06' %}" class="btn btn-outline-secondary" role="button">우울감 경험률_표준화율</a>
+    <a href = "{% url 'health07' %}" class="btn btn-outline-secondary" role="button">인지장애 경험률(50세 이상)_표준화율</a>
+    <a href = "{% url 'health08' %}" class="btn btn-outline-secondary" role="button">주관적 구강건강이 나쁜 인구의 분율_표준화율</a>
+    <a href = "{% url 'health09' %}" class="btn btn-outline-secondary" role="button">스트레스로 인한 정신상담률_표준화율</a>
+    <a href = "{% url 'health10' %}" class="btn btn-outline-secondary" role="button">우울증상으로 인한 정신상담률_표준화율</a>
+    <a href = "{% url 'health11' %}" class="btn btn-outline-secondary" role="button">연간 보건기관 이용률_표준화율</a>
+</body>
+</html>
