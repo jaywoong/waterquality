@@ -1,0 +1,41 @@
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<a href = "{% url 'dashboard1' %}" class="btn btn-outline-secondary" role="button">지역 선택 화면으로</a>
+
+<div style="width:100%">
+    <canvas id="myChart"></canvas>
+</div>
+
+<script>
+
+var ctx = document.getElementById("myChart").getContext('2d');
+
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ["세종특별자치시", "대전광역시", "강원도", "서울특별시", "대구광역시", "울산광역시", "충청북도", "전라북도", "전라남도", "경상남도", "부산광역시", "광주광역시", "경기도", "충청남도", "경상북도", "제주특별자치도", "인천광역시"],
+        datasets: [{
+            label: '# of Votes',
+            data: [7.5 , 7.2 , 7.2 , 7.1 , 7.1 , 7.1 , 7.1 , 7.1 , 7.1 , 7.1 , 7.0 , 7.0 , 7.0 , 7.0 , 7.0 , 7.0 , 6.9
+            ],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+
+            ],
+            borderColor: [
+                'rgba(255,0,0,1)'
+            ],
+            borderWidth: 3
+        }]
+    },
+    options: {
+        maintainAspectRatio: true, // default value. false일 경우 포함된 div의 크기에 맞춰서 그려짐.
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
+    }
+});
+</script>

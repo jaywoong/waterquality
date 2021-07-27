@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+{% load static %}
+<script>
+
+    function display(data){};
+
+    function getdata(){
+        $.ajax({
+            url:'tabledata',
+            datatype:'JSON',
+            success:function(data){
+                alert(data);
+            }
+        });
+    };
+
+    $(document).ready(function(){
+        // getdata();
+    });
+</script>
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">3조</h1>
+    </div>
+</main>
