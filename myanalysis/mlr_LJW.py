@@ -4,6 +4,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 import matplotlib.pyplot as plt
+import seaborn as sns
 from config.settings import DATA_DIRS
 
 # ------------------------------------------------------------------------------------------------------
@@ -124,16 +125,34 @@ class MLR:
         pd.DataFrame(lr.predict(x_test))
         score = lr.score(x_test, y_test)
 
-        return score, lr_coef, lr_intercept
+        return score, lr, lr_coef, lr_intercept, x_test, y_test
 
-    # def visualization(self):
+    def visual1(self, x, x_lst, y, y_lst):
+        for i in range(0,len(x_lst)):
+            plt.title("Scatter Plot", fontsize=15)
+            plt.scatter(x[x_lst[i]], y[y_lst], c = 'b' , alpha=0.5)
+            plt.xlabel(x_lst[1], fontsize=13)
+            plt.ylabel(y_lst[0], fontsize=13)
+            plt.grid()
+            plt.show()
+
+    def visual2(self, y_name):
+        fig = plt.figure(figsize=(20, 5))
+        graph = fig.add_subplot(1,1,1)
+        graph.plot(y_test, marker='o', color='r', label='Actual Data')
+        graph.plot(lr.predict(x_test), marker='^', color='b', label='Predicted Data')
+        graph.set_title('다중회귀분석 예측 결과', size=30)
+        plt.xlabel("X", fontsize=13)
+        plt.ylabel(y_name[0], fontsize=13)
+        plt.legend(loc='best')
+        plt.show()
 
 if __name__ == '__main__':
     MLR = MLR()
 
     # 독립변수, 종속변수 리스트 생성
     x_lst1 = ['증발잔류물(기준:500/ 단위:(mg/L))', '알루미늄(기준:0.2/ 단위:(mg/L))', '색도(기준:5/ 단위:(도))', '디브로모아세토니트릴(기준:0.1/ 단위:(mg/L))', '과망간산칼륨소비량(기준:10/ 단위:(mg/L))', '염소이온(기준:250/ 단위:(mg/L))', '불소(기준:1.5/ 단위:(mg/L))', '디브로모클로로메탄(기준:0.1/ 단위:(mg/L))']
-    y_lst1 = ['스트레스로인한정신상담률_표준화율']
+    y_lst1 = ['스트레스인지율_표준화율']
     x_lst2 = ['알루미늄(기준:0.2/ 단위:(mg/L))', '과망간산칼륨소비량(기준:10/ 단위:(mg/L))', '염소이온(기준:250/ 단위:(mg/L))', '불소(기준:1.5/ 단위:(mg/L))', '디브로모클로로메탄(기준:0.1/ 단위:(mg/L))', '질산성질소(기준:10/ 단위:(mg/L))', '수소이온농도(기준:5.8 ~ 8.5/ 단위:-)', '1,2-디브로모-3-클로로프로판(기준:0.003/ 단위:(mg/L))', '톨루엔(기준:0.7/ 단위:(mg/L))']
     y_lst2 = ['우울감경험률_표준화율']
     x_lst3 = ['염소이온(기준:250/ 단위:(mg/L))', '불소(기준:1.5/ 단위:(mg/L))', '붕소(기준:1/ 단위:(mg/L))', '잔류염소(기준:4/ 단위:(mg/L))', '증발잔류물(기준:500/ 단위:(mg/L))', '클로로포름(기준:0.08/ 단위:(mg/L))', '사염화탄소(기준:0.002/ 단위:(mg/L))']
@@ -147,5 +166,7 @@ if __name__ == '__main__':
     water = MLR.waterPreprocessing(x_lst1)
     x1 = MLR.waterQualMean()
     y1 = MLR.healthPreprocessing(y_lst1)
-    score = MLR.mlr(x1,y1)
+    score, lr, lr_coef, lr_intercept, x_test, y_test = MLR.mlr(x1,y1)
     print(score)
+    # MLR.visual1(x1, x_lst1, y1, y_lst1)
+    MLR.visual2(y_lst1)
