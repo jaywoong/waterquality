@@ -26,3 +26,6 @@ WHO 자료에 따르면 매년 300만 명 이상의사람들이 수인성 질병
 | **시스템 운영  환경** | Python Anywhere                  |
 | **협업 도구**         | Github, Zoom, Google  Docs       |
 
+
+
+#### **4. 데이터 출처**
