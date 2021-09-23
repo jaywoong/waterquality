@@ -37,3 +37,8 @@ WHO 자료에 따르면 매년 300만 명 이상의사람들이 수인성 질병
 2) 지역사회 건강 결과 및 건강결정요인
 
    https://chs.kdca.go.kr/chs/recsRoom/dataBaseMain.do 
+
+
+
+#### **5. 데이터 전처리**
+
