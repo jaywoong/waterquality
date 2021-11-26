@@ -38,7 +38,4 @@ WHO 자료에 따르면 매년 300만 명 이상의사람들이 수인성 질병
 
    https://chs.kdca.go.kr/chs/recsRoom/dataBaseMain.do 
 
-
-
-#### **5. 데이터 전처리**
-
+Develope this project on project_health_environment
